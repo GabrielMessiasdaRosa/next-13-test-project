@@ -17,7 +17,7 @@ export default function BlogPostsList({ posts }: BlogPostsListProps) {
               href={`/blog/${post.slug}`}
               className="min-w-40 h-40 flex flex-col px-4 py-2 transition-all hover:bg-gray-100 rounded-md cursor-pointer"
             >
-              <p>{post.title}</p>
+              <p className="font-bold">{post.title}</p>
               <p>{post.content.slice(0, 50)}...</p>
             </Link>
           ))}

@@ -1,5 +1,4 @@
 import BlogPostsList from "@/components/blog-posts-list";
-import { baseUrl } from "@/lib/base-url";
 import { PostType } from "@/types/post-type";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -17,11 +16,9 @@ export const metadata: Metadata = {
 };
 
 async function getPosts() {
-  const getPostsURL = `${baseUrl}/api/content`;
-  const res = await fetch(getPostsURL);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/content`);
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
   const data = await res.json();
