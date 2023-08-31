@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { PostType } from "@/types/post-type";
 import { Metadata } from "next";
 

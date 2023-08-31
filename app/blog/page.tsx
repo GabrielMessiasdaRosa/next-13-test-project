@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import BlogPostsList from "@/components/blog-posts-list";
 import { PostType } from "@/types/post-type";
 import { Metadata } from "next";
