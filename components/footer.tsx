@@ -6,8 +6,8 @@ export default function Footer({}: FooterProps) {
       <span className="flex flex-1 text-2xl lg:text-4xl font-light">
         Gabriel Messias da Rosa
       </span>
-      <div className="flex flex-1 h-full w-full">
-        <ul className="border-l-4 border-gray-50">
+      <div className="flex flex-1 h-full w-full ">
+        <ul className="border-l-4 border-gray-50 py-5">
           <li className="text-lg font-bold px-4 py-2">Social</li>
           <li className="cursor-pointer transition-all duration-500 hover:bg-gray-50 hover:text-gray-800 px-4 py-2">
             <a href="https://github.com/GabrielMessiasdaRosa">- GitHub</a>
@@ -29,7 +29,7 @@ export default function Footer({}: FooterProps) {
       </div>
 
       <div className="flex flex-1 h-full w-full">
-        <ul className="border-l-4 border-gray-50">
+        <ul className="border-l-4 border-gray-50 py-5">
           <li className="text-lg font-bold px-4 py-2">
             Technologies and Tools used
           </li>

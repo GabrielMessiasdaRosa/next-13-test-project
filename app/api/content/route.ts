@@ -1,4 +1,5 @@
 import { PostType } from "@/types/post-type";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 const posts: PostType[] = [
