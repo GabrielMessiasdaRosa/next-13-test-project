@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+  const posts: Post[] = await fetch("http://127.0.0.1:3000/api/content").then(
     (res) => res.json()
   );
 
