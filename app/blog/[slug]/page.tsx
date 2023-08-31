@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 interface Post {
   title: string;
   content: string;
@@ -9,6 +11,10 @@ export interface BlogPostPageProps {
     slug: string;
   };
 }
+export const metadata: Metadata = {
+  title: "Blog | Test Project",
+  description: "Blog page",
+};
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
@@ -24,8 +30,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           "not found"
         ) : (
           <>
-            <h1 className="text-4xl font-bold">{post.title}</h1>
-            <p className="text-lg lg:w-1/2">{post.content}</p>
+            <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
+            <p className="text-lg lg:w-1/2 px-4 py-2">{post.content}</p>
           </>
         )}
       </div>

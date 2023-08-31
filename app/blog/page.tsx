@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 
 interface Post {
@@ -15,13 +16,16 @@ interface Post {
   }));
 }
  */
-export interface BlogPostPageProps {
+export interface BlogPageProps {
   /*   params: {
     slug: string;
   }; */
 }
-
-export default async function BlogPostPage({}: BlogPostPageProps) {
+export const metadata: Metadata = {
+  title: "Blog | Test Project",
+  description: "Blog page",
+};
+export default async function BlogPage({}: BlogPageProps) {
   const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
     (res) => res.json()
   );
