@@ -1,3 +1,4 @@
+import { baseUrl } from "@/lib/base-url";
 import { Metadata } from "next";
 
 interface Post {
@@ -17,9 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const posts: Post[] = await fetch("http://127.0.0.1:3000/api/content").then(
-    (res) => res.json()
-  );
+  const getPostsURL = `${baseUrl}/api/content`;
+  const posts: Post[] = await fetch(getPostsURL).then((res) => res.json());
 
   const post = posts.find((post) => post.slug === params.slug)!;
 

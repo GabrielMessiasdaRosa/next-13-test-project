@@ -1,4 +1,5 @@
 import BlogPostsList from "@/components/blog-posts-list";
+import { baseUrl } from "@/lib/base-url";
 import { Metadata } from "next";
 
 export interface Post {
@@ -13,9 +14,8 @@ export const metadata: Metadata = {
   description: "Blog page",
 };
 export default async function BlogPage({}: BlogPageProps) {
-  const res: Post[] = await fetch("http://127.0.0.1:3000/api/content").then(
-    (res) => res.json()
-  );
+  const getPostsURL = `${baseUrl}/api/content`;
+  const res: Post[] = await fetch(getPostsURL).then((res) => res.json());
   const posts = res || [];
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">
