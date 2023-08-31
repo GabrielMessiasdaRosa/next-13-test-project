@@ -1,11 +1,6 @@
 import { baseUrl } from "@/lib/base-url";
+import { PostType } from "@/types/post-type";
 import { Metadata } from "next";
-
-interface Post {
-  title: string;
-  content: string;
-  slug: string;
-}
 
 export interface BlogPostPageProps {
   params: {
@@ -19,9 +14,9 @@ export const metadata: Metadata = {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const getPostsURL = `${baseUrl}/api/content`;
-  const posts: Post[] = await fetch(getPostsURL).then((res) => res.json());
-
-  const post = posts.find((post) => post.slug === params.slug)!;
+  const res = await fetch(getPostsURL);
+  const posts = await res.json();
+  const post = posts.find((post: PostType) => post.slug === params.slug)!;
 
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">

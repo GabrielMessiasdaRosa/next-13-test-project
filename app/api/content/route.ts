@@ -1,6 +1,7 @@
+import { PostType } from "@/types/post-type";
 import { NextResponse } from "next/server";
 
-const posts = [
+const posts: PostType[] = [
   {
     slug: "post-1",
     title: "Post 1",

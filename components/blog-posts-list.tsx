@@ -1,15 +1,15 @@
 "use client";
 
-import { Post } from "@/app/blog/page";
+import { PostType } from "@/types/post-type";
 import Link from "next/link";
 
 export interface BlogPostsListProps {
-  posts: Post[];
+  posts: PostType[];
 }
 
 export default function BlogPostsList({ posts }: BlogPostsListProps) {
   return (
-    <div>
+    <div className="flex flex-1 flex-row w-full flex-wrap items-center justify-center">
       {!posts
         ? "Aparentely there are no posts"
         : posts.map((post) => (
