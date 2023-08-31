@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   description: "Blog page",
 };
 export default async function BlogPage({}: BlogPageProps) {
-  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+  const res: Post[] = await fetch("http://localhost:3000/api/content").then(
     (res) => res.json()
   );
-
+  const posts = res || [];
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">
       <h1 className="text-4xl font-bold mb-8">Blog</h1>
