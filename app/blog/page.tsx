@@ -2,6 +2,8 @@ export const dynamic = "force-dynamic";
 import BlogPostsList from "@/components/blog-posts-list";
 import { PostType } from "@/types/post-type";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 export interface Post {
@@ -19,14 +21,13 @@ export const metadata: Metadata = {
 async function getPosts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/content`);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
   const data = await res.json();
-  return data as PostType[];
+  return data as PostType[] || [];
 }
 
 export default async function BlogPage({}: BlogPageProps) {
+  const session = await getServerSession();
+  if (!session) return redirect("/api/auth/signin");
   const posts: PostType[] = await getPosts();
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">

@@ -10,10 +10,11 @@ export interface BlogPostsListProps {
 export default function BlogPostsList({ posts }: BlogPostsListProps) {
   return (
     <div className="flex flex-1 flex-row w-full flex-wrap items-center justify-center">
-      {!posts
+      {!posts.length
         ? "Aparentely there are no posts"
         : posts.map((post) => (
             <Link
+              key={post.slug}
               href={`/blog/${post.slug}`}
               className="min-w-40 h-40 flex flex-col px-4 py-2 transition-all hover:bg-gray-100 rounded-md cursor-pointer"
             >
