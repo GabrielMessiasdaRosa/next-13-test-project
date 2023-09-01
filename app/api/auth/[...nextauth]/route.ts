@@ -1,9 +1,7 @@
+import prisma from "@/lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
-const prisma = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -11,15 +9,9 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET as string,
 };
 
 const handler = NextAuth(authOptions);
