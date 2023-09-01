@@ -16,6 +16,16 @@ const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET!,
     }),
   ],
+  callbacks: {
+    async signIn({ account, profile }) {
+      // @ts-ignore
+      if (account.provider === "google") {
+        // @ts-ignore
+        return profile.email_verified && profile.email.endsWith("@gmail.com");
+      }
+      return true; // Do different verification for other providers that don't have `email_verified`
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
