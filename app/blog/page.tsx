@@ -22,12 +22,13 @@ async function getPosts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/content`);
 
   const data = await res.json();
-  return data as PostType[] || [];
+  return (data as PostType[]) || [];
 }
 
 export default async function BlogPage({}: BlogPageProps) {
   const session = await getServerSession();
   if (!session) return redirect("/api/auth/signin");
+  console.log(session);
   const posts: PostType[] = await getPosts();
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">
