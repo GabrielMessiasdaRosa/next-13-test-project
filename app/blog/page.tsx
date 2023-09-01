@@ -28,7 +28,6 @@ async function getPosts() {
 export default async function BlogPage({}: BlogPageProps) {
   const session = await getServerSession();
   if (!session) return redirect("/api/auth/signin");
-  console.log(session);
   const posts: PostType[] = await getPosts();
   return (
     <div className="px-16 py-6 min-h-[85.3dvh]">
