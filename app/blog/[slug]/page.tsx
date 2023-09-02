@@ -16,10 +16,11 @@ export const metadata: Metadata = {
 };
 
 async function getPostBySlug(slug: PostType["slug"]) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/content`);
-
-  const posts = await res.json();
-  const post = posts.find((post: PostType) => post.slug === slug)!;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/content/${slug}`
+  );
+  const post = await res.json();
+  console.log("serverside", post);
   return (post as PostType) || {};
 }
 
@@ -37,6 +38,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <>
             <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
             <p className="text-lg lg:w-1/2 px-4 py-2">{post.content}</p>
+            <p className="text-lg lg:w-1/2 px-4 py-2">By - {post?.author?.name}</p>
           </>
         )}
       </div>

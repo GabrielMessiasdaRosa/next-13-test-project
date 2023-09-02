@@ -8,8 +8,9 @@ export interface BlogPostsListProps {
 }
 
 export default function BlogPostsList({ posts }: BlogPostsListProps) {
+  console.log(posts);
   return (
-    <div className="flex flex-1 flex-row w-full flex-wrap items-center justify-center">
+    <div className="flex flex-1 flex-row w-full mt-16 flex-wrap items-center justify-center">
       {!posts.length
         ? "Aparentely there are no posts"
         : posts.map((post) => (
@@ -20,6 +21,7 @@ export default function BlogPostsList({ posts }: BlogPostsListProps) {
             >
               <p className="font-bold">{post.title}</p>
               <p>{post.content.slice(0, 50)}...</p>
+              <p>{post?.author?.name}</p>
             </Link>
           ))}
     </div>
