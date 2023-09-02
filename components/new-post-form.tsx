@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { revalidateTag } from "next/cache";
 import { redirect, useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -32,13 +31,16 @@ export default function NewPostForm({}: NewPostFormProps) {
       authorId: authorId,
       slug: slug,
     };
-    const response = await fetch("http://localhost:3000/api/content", {
-      method: "POST",
-      body: JSON.stringify(newPost),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/content`,
+      {
+        method: "POST",
+        body: JSON.stringify(newPost),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     setFetching(false);
     startTransition(() => {
